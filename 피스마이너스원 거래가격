@@ -1,0 +1,17 @@
+library(RSelenium)
+
+remDr <- remoteDriver(
+  remoteServerAddr = "localhost",
+  port = 4446L,
+  browserName = "chrome"
+)
+remDr$open()
+remDr$navigate("https://nid.naver.com/nidlogin.login?mode=form&url=https%3A%2F%2Fwww.naver.com")
+txt_id<-remDr$findElement(using="id",value="id")
+txt_pw<-remDr$findElement(using="id",value="pw")
+login_btn<-remDr$findElement(using="class",value="btn_global")
+txt_id$setElementAttribute("value","*****")
+txt_pw$setElementAttribute("value","*****")
+login_btn$clickElement()
+url="https://cafe.naver.com/ArticleSearchList.nhn?search.clubid=10625158&search.menuid=371&search.media=0&search.searchdate=all&search.defaultValue=1&userDisplay=15&search.option=0&search.sortBy=date&search.searchBy=0&search.query=%C7%C7%BD%BA%B8%B6%C0%CC%B3%CA%BF%F8&search.viewtype=title&search.page=1"
+remDr$navigate(url)
